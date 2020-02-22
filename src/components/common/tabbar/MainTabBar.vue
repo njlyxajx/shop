@@ -16,7 +16,6 @@
         <span slot="item-icon" class="iconfont">&#xe607;</span>
         <div slot="item-text">我的</div>
       </tab-bar-item>
-      
     </tab-bar>
 </template>
 

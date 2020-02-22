@@ -9,7 +9,7 @@
 export default {
   name: "TabBarItem",
   props:{
-    path:String,
+    path:String, 
   },
   data() {
     return {
@@ -27,7 +27,6 @@ export default {
     }
     
   },
-  
 };
 </script>
 

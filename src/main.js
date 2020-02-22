@@ -10,3 +10,7 @@ new Vue({
   store,
   render: h => h(App)
 }).$mount('#app')
+
+import VueAwesomeSwiper from 'vue-awesome-swiper'
+import 'swiper/dist/css/swiper.css'
+Vue.use(VueAwesomeSwiper)

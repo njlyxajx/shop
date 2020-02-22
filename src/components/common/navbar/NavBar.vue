@@ -13,17 +13,26 @@
 </template>
 
 <script>
-export default {
-
-}
+export default {};
 </script>
 
 <style>
-  .left{
-    width: 60px;
-  }
-  
-  .right{
-    width: 60px;
-  }
+.left {
+  width: 60px;
+}
+
+.right {
+  width: 60px;
+}
+.nav-bar {
+  display: flex;
+  height: 44px;
+  background-color: lightpink;
+}
+.center {
+  flex: 1;
+  text-align: center;
+  line-height: 44px;
+  color: aliceblue;
+}
 </style>

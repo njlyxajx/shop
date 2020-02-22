@@ -3,16 +3,35 @@
     <nav-bar class="home-nav">
       <h2 slot="center">购物街</h2>
     </nav-bar>
+    <main-swiper :res="banners"></main-swiper>
   </div>
 </template>
 
 <script>
-import NavBar from 'components/common/navbar/NavBar'
+import NavBar from 'components/common/navbar/NavBar';
+import MainSwiper from 'components/common/swiper/MainSwiper'
+import {getHomeData} from 'network/home' //单独封装函数方便日后维护
 export default {
   name:'Home',
+  data() {
+    return {
+      banners:[],
+      recommends:[]
+    }
+  },
   components:{
-    NavBar
-  }
+    NavBar,
+    MainSwiper
+  },
+  
+  created(){  //生命周期函数，组件被创建开始网路数据
+    //1、请求多个数据
+    getHomeData().then(res =>{
+      this.banners = res.data.data.banner.list;
+      this.recommends = res.data.data.recommend.list;
+    })
+    
+  } 
 }
 </script>
 
@@ -20,15 +39,6 @@ export default {
   .home-nav{
     color:var(--color-tint);
   }
-  .center{
-    flex: 1;
-    text-align: center;
-    line-height: 44px;
-    color: aliceblue
-  }
-  .nav-bar{
-    display: flex;
-    height: 44px;
-    background-color: lightpink
-  }
+
+  
 </style>
