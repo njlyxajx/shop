@@ -24,6 +24,7 @@ export default {
   padding: 5px 0;
 }
 .tab-bar-item {
+  height: 42px;
   flex: 1;
   text-align: center;
   font-size: 10px;

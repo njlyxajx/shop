@@ -4,12 +4,14 @@
       <h2 slot="center">购物街</h2>
     </nav-bar>
     <main-swiper :res="banners"></main-swiper>
+    <recommend-view :recommend="recommends"></recommend-view>
   </div>
 </template>
 
 <script>
 import NavBar from 'components/common/navbar/NavBar';
-import MainSwiper from 'components/common/swiper/MainSwiper'
+import MainSwiper from 'components/common/swiper/MainSwiper';
+import RecommendView from './RecommendView'
 import {getHomeData} from 'network/home' //单独封装函数方便日后维护
 export default {
   name:'Home',
@@ -21,7 +23,8 @@ export default {
   },
   components:{
     NavBar,
-    MainSwiper
+    MainSwiper,
+    RecommendView,
   },
   
   created(){  //生命周期函数，组件被创建开始网路数据

@@ -1,4 +1,5 @@
 <template>
+  <div class="main-tab-bar">
    <tab-bar>
       <tab-bar-item path="/home">
         <span slot="item-icon" class="iconfont">&#xe600;</span>
@@ -17,6 +18,7 @@
         <div slot="item-text">我的</div>
       </tab-bar-item>
     </tab-bar>
+  </div>
 </template>
 
 <script>
