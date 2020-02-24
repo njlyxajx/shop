@@ -20,11 +20,11 @@ export default {
   data() {
     return {
       swiperOption: {
-        loop:true,
         autoplay: {
           delay: 2000, //延迟2秒
-          disableOnInteraction: false //用户操作后不禁用自动轮播
+          disableOnInteraction: false, //用户操作后不禁用自动轮播
         },
+        loop:true,
         pagination: {
           //分页器
           el: ".swiper-pagination"
@@ -43,7 +43,6 @@ export default {
 <style>
 .swiper {
   width: 100%;
-  min-height: 1px;
 }
 .pic {
   width: 100%;
@@ -52,4 +51,5 @@ export default {
 .swiper-pagination-bullet-active {
   background-color: #f40;
 }
+
 </style>

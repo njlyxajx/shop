@@ -28,6 +28,7 @@ export default {};
   display: flex;
   height: 44px;
   background-color: lightpink;
+  
 }
 .center {
   flex: 1;
