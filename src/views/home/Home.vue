@@ -6,7 +6,7 @@
     <main-swiper :res="banners" class="swiper"></main-swiper>
     <recommend-view :recommend="recommends"></recommend-view>
     <div class="center-picture">
-      <img src="~assets/img/homeMenu.jpg" alt="">
+      <img src="~assets/img/homeMenu.jpg" alt />
     </div>
     <tab-control class="tab-control" :titles="['流行','新款','精选']"></tab-control>
     <ul>
@@ -62,59 +62,59 @@
       <li>列50</li>
     </ul>
   </div>
- 
 </template>
 
 <script>
-import NavBar from 'components/common/navbar/NavBar';
-import MainSwiper from 'components/common/swiper/MainSwiper';
-import RecommendView from './RecommendView'
-import TabControl from 'components/content/tabControl/TabControl'
-import {getHomeData} from 'network/home' //单独封装函数方便日后维护
+import NavBar from "components/common/navbar/NavBar";
+import MainSwiper from "components/common/swiper/MainSwiper";
+import RecommendView from "./RecommendView";
+import TabControl from "components/content/tabControl/TabControl";
+import { getHomeData } from "network/home"; //单独封装函数方便日后维护
 
 export default {
-  name:'Home',
+  name: "Home",
   data() {
     return {
-      banners:[],
-      recommends:[]
-    }
+      banners: [],
+      recommends: [],
+    };
   },
-  components:{
+  components: {
     NavBar,
     MainSwiper,
     RecommendView,
-    TabControl,
+    TabControl
   },
-  
-  created(){  //生命周期函数，组件被创建开始网路数据
+
+  created() {
+    //生命周期函数，组件被创建开始网路数据
     //1、请求多个数据
-    getHomeData().then(res =>{
+    getHomeData().then(res => {
       this.banners = res.data.data.banner.list;
       this.recommends = res.data.data.recommend.list;
-    })
-  } 
-}
+    });
+  },
+};
 </script>
 
 <style>
-  .home-nav{
-    color:var(--color-tint);
-    position: fixed;
-    left: 0;
-    top: 0;
-    right: 0;
-    z-index: 10;
-  }
-  .center-picture img{
-    width: 100%;
-  }
-  .swiper{
-    margin-top: 44px;
-  }
-  .tab-control{
-    position: sticky;
-    top: 44px;
-    background-color: #fff;
-  }
+.home-nav {
+  color: var(--color-tint);
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  z-index: 10;
+}
+.center-picture img {
+  width: 100%;
+}
+.swiper {
+  margin-top: 44px;
+}
+.tab-control {
+  position: sticky;
+  top: 44px;
+  background-color: #fff;
+}
 </style>

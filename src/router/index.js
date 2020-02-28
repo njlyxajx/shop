@@ -1,40 +1,40 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
-const Home = ()=> import('../views/home/Home');
-const Cart = ()=> import('../views/cart/Cart');
-const Category = ()=> import('../views/category/Category');
-const Profiles = ()=> import('../views/profiles/Profiles');
+const Home = () => import('../views/home/Home');
+const Cart = () => import('../views/cart/Cart');
+const Category = () => import('../views/category/Category');
+const Profiles = () => import('../views/profiles/Profiles');
 
 Vue.use(VueRouter)
 
-const routes = [
-  {
-    path:'/',
-    redirect:'/home'  //默认打开首页
+const routes = [{
+    path: '/',
+    redirect: '/home' //默认打开首页
   },
   {
-    path:'/home',
+    path: '/home',
     component: Home,
   },
   {
-    path:'/cart',
+    path: '/cart',
     component: Cart,
   },
   {
-    path:'/category',
+    path: '/category',
     component: Category,
   },
   {
-    path:'/profiles',
+    path: '/profiles',
     component: Profiles,
   },
 ]
 
 const router = new VueRouter({
+
+  mode: 'history', //默认模式是hash url后缀会有#号
+  routes,
   
-  mode:'history', //默认模式是hash url后缀会有#号
-  routes
 })
 
 export default router
