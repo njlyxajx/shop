@@ -1,0 +1,30 @@
+<template>
+  <div class="goods">
+    <goods-list-item v-for="item in goods" :goodslist="item">
+      
+    </goods-list-item>
+  </div>
+</template>
+
+<script>
+import GoodsListItem from "./GoodsListItem"
+export default {
+  name:"GoodsList",
+  props:{
+    goods:{
+      type:Array
+    }
+  },
+  components:{
+    GoodsListItem
+  }
+}
+</script>
+
+<style>
+  .goods{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+  }
+</style>
