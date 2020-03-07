@@ -22,6 +22,7 @@ export default {
   position: fixed;
   box-shadow: 0px -2px 1px rgba(100, 100, 100, 0.1);
   padding: 5px 0;
+  z-index: 1000;
 }
 .tab-bar-item {
   height: 42px;

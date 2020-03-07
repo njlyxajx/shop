@@ -23,7 +23,7 @@ export default {
   },
   methods: {
     itemClick(){
-      return this.$router.push(this.path).catch(err => { console.log(err) });
+      return this.$router.replace(this.path).catch(err => {});
     }
     
   },

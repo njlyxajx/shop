@@ -24,7 +24,7 @@ export default {
         observeParents:true,//修改swiper的父元素时，自动初始化swiper 
         loop:true,
         autoplay: {
-          delay: 2000, //延迟3秒
+          delay: 3000, 
           stopOnLastSlide:false,   //切换最后一张停止轮播
           disableOnInteraction:false, //用户操作后不禁用自动轮播
         },
@@ -51,7 +51,9 @@ export default {
 .pic {
   width: 100%;
 }
-
+/**
+  分页器激活颜色
+ */
 .swiper-pagination-bullet-active {
   background-color: #f40;
 }

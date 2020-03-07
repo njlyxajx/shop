@@ -1,5 +1,5 @@
 <template>
-  <div class="goodsItem">
+  <div class="goodsItem" refs="picture">
     <img :src="goodslist.show.img" alt="">
     <div class="title">
       <p>{{goodslist.title}}</p>
@@ -7,14 +7,21 @@
       <span class="collect">收藏{{goodslist.cfav}}</span>
     </div>
   </div>
+ 
 </template>
 
 <script>
+
 export default {
   name:"GoodsListItem",
   props:{
     goodslist:{
       type:Object
+    }
+  },
+  data() {
+    return {
+      scroll:null
     }
   },
 }
@@ -24,17 +31,17 @@ export default {
   .goodsItem{
     width: 46%;
     box-sizing: border-box;
-    margin-top: 10px;
     overflow:hidden; 
   }
   .goodsItem img{
     width: 100%;
-    height: 280px;
+    height: 85%;
     font-size: 0;
+    border-radius: 8px;
   }
   .goodsItem .title{
     width: 100%;
-    line-height: 14px;
+    line-height: 20px;
     font-size:  14px;
   }
   .goodsItem .title p{

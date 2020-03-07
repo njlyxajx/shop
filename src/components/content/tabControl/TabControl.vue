@@ -25,6 +25,7 @@ export default {
   methods: {
     handle(index){
       this.cur = index;
+      this.$emit("goodsType",index);
     }
   },
 }
@@ -37,6 +38,7 @@ export default {
     justify-content: space-evenly;
     align-items: center;
     height: 40px;
+    margin-bottom: 10px;
   }
   .tab-controls-item{
     width: 60px;
