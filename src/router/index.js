@@ -5,7 +5,7 @@ const Home = () => import('../views/home/Home');
 const Cart = () => import('../views/cart/Cart');
 const Category = () => import('../views/category/Category');
 const Profiles = () => import('../views/profiles/Profiles');
-
+const Detail = () =>import('../views/detail/Detail')
 Vue.use(VueRouter)
 
 const routes = [{
@@ -28,13 +28,17 @@ const routes = [{
     path: '/profiles',
     component: Profiles,
   },
+  {
+    path: '/detail/:iid',
+    component: Detail,
+  }
 ]
 
 const router = new VueRouter({
 
   mode: 'history', //默认模式是hash url后缀会有#号
   routes,
-  
+  linkActiveClass:'active',
 })
 
 export default router

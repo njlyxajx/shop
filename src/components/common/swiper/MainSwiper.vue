@@ -2,7 +2,7 @@
   <div class="main-swiper">                  <!--通过v-if判断，在组件收到需要渲染的数据后再加载swiper防止loop失效-->
     <swiper :options="swiperOption" ref="mySwiper" class="swiper" v-if="res.length">  
       <swiper-slide v-for="(item,index) in res" :key="index" class="swiper_item">
-        <img :src="item.image" alt="轮播图" class="pic" />
+        <img :src="item.image" alt="轮播图" class="pic" @load="imgLoad" />
       </swiper-slide>
       <div class="swiper-pagination" slot="pagination"></div>
     </swiper>
@@ -33,14 +33,23 @@ export default {
           //分页器
           el: ".swiper-pagination"
         }
-      }
+      },
+      isLoad:false
     };
   },
   computed: {
     swiper() {
       return this.$refs.mySwiper.swiper;
     }
-  }
+  },
+  methods: {
+    imgLoad(){
+      if(!this.isLoad){
+        this.$emit('swiperImageLoad');
+        this.isLoad = true
+      }
+    }
+  },
 };
 </script>
 

@@ -3,17 +3,35 @@
     <nav-bar class="home-nav">
       <h2 slot="center">购物街</h2>
     </nav-bar>
-    <b-scroll class="content" ref="bscroll"> 
-      <main-swiper :res="banners" class="swiper"></main-swiper>
+    <tab-control class="tab-control1" 
+                  :titles="['流行','新款','精选']" 
+                  @goodsType="goodsType" 
+                  ref="tabcontrol1"
+                  v-show="isTabFixed"></tab-control>
+    <!-- 可滚动区域 -->
+    <b-scroll class="content" 
+              ref="bscroll" 
+              :probe-type="3" 
+              @scrollY="topvalue"
+              :pull-up-load="true"
+              @pullingUp="loadMore"> 
+      <!-- 轮播图 -->
+      <main-swiper :res="banners" class="swiper" @swiperImageLoad="imageLoad"></main-swiper>
       <recommend-view :recommend="recommends"></recommend-view>
       <div class="center-picture">
         <img src="~assets/img/homeMenu.jpg" alt />
       </div>
-      <tab-control class="tab-control" :titles="['流行','新款','精选']" @goodsType="goodsType"></tab-control>
+      <!-- 中间商品分类导航 -->
+      <tab-control class="tab-control2" 
+                  :titles="['流行','新款','精选']" 
+                  @goodsType="goodsType" 
+                  ref="tabcontrol2"></tab-control>
+      <!-- 商品列表 -->
       <goods-list :goods="goods[current].list">
       </goods-list>
     </b-scroll>
-    <to-top @click.native="backClick"></to-top>
+    <!-- 返回顶部 --> 
+    <to-top @click.native="backClick" ref="toTop" v-show="flag"></to-top>
   </div>
 </template>
 
@@ -39,8 +57,20 @@ export default {
         'new':{page:0,list:[]},
         'sell':{page:0,list:[]},
       },
+      //默认为商品为流行
       current:"pop",
+      flag:false,
+      isTabFixed:true,
+      tabOffsetTop:0,
     };
+  },
+  computed:{
+    activated() {
+      console.log('111')
+    },
+    deactivated() {
+      console.log(222)
+    },
   },
   components: {
     NavBar,
@@ -79,7 +109,9 @@ export default {
         this.goods[type].page += 1;
       });
     },
-
+    imageLoad(){
+      this.tabOffsetTop = this.$refs.tabcontrol2.$el.offsetTop;
+    },
     /**
      * 展示数据类型
      */
@@ -95,14 +127,34 @@ export default {
           this.current = "sell"
           break
       }
+      this.$refs.tabcontrol1.cur = index;
+      this.$refs.tabcontrol2.cur = index;
+      
     },
+    /**
+     * 返回顶部 scrollTo(left,top,taketime)
+     */
     backClick(){
-      this.$refs.bscroll.scroll.scrollTo(0,-44,500);
-    }
+      //先判断 bscroll组件是否已经渲染完成，再点击回到顶部按钮
+      this.$refs.bscroll && this.$refs.bscroll.scroll.scrollTo(0,-44,500);
+    },
+    /**
+     * 判断是否到达1000像素，返回顶部按钮显示
+     */
+    topvalue(position){
+       this.$refs.bscroll && -position.y < 1000 ? this.flag = false : this.flag = true;
+       //判断导航是否吸顶
+       this.isTabFixed = (-position.y >=665);
+    },
+    /**
+     * 加载更多
+     */
+    loadMore(){
+      this.getHomeGoods(this.current);
+      this.$refs.bscroll.scroll.finishPullUp();
+    },
   },
-  computed:{
-    
-  }
+
 };
 </script>
 
@@ -113,7 +165,8 @@ export default {
   left: 0;
   top: 0;
   right: 0;
-  z-index: 10;
+  z-index: 1001;
+  background-color: lightpink;
 }
 .center-picture img {
   width: 100%;
@@ -121,11 +174,14 @@ export default {
 .swiper {
   margin-top: 44px;
 }
-.tab-control {
-  position: sticky;
+.tab-control1 {
+  /* position: sticky;  * css3吸顶功能 */
+  position: relative;
   top: 44px;
   background-color: #fff;
+  z-index: 100;
 }
+
 .content{
   position: absolute;
   top: 44px;
@@ -133,4 +189,5 @@ export default {
   left: 0;
   right: 0;
 }
+
 </style>

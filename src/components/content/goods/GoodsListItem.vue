@@ -1,5 +1,5 @@
 <template>
-  <div class="goodsItem" refs="picture">
+  <div class="goodsItem" refs="picture" @click="clickItem">
     <img :src="goodslist.show.img" alt="">
     <div class="title">
       <p>{{goodslist.title}}</p>
@@ -24,6 +24,13 @@ export default {
       scroll:null
     }
   },
+  methods:{
+    clickItem(){
+      this.$router.push({
+        path:'/detail/' + this.goodslist.iid,
+      })
+    }
+  }
 }
 </script>
 

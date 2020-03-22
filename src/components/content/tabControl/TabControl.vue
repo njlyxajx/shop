@@ -44,7 +44,7 @@ export default {
     width: 60px;
   }
   .tab-controls-item span{
-    padding: 5px 0;
+    padding: 3px 0;
     width: 40px;
   }
   .actived{

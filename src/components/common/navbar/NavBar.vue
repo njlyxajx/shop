@@ -27,13 +27,10 @@ export default {};
 .nav-bar {
   display: flex;
   height: 44px;
-  background-color: lightpink;
-  
 }
 .center {
   flex: 1;
   text-align: center;
   line-height: 44px;
-  color: aliceblue;
 }
 </style>
